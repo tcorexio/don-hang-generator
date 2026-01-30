@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bảng Generate Đơn Hàng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>ĐƠN HÀNG TRONG NGÀY</h1>
+
+    <div class="controls">
+      <input id="pricesInput" placeholder="Giá (vd: 18,20,30,32)" />
+      <input
+        id="targetMoney"
+        placeholder="Tổng tiền (vd: 7.500.000)"
+        oninput="formatMoneyInput(this)"
+      />
+      <input
+        id="targetKg"
+        type="number"
+        step="0.1"
+        placeholder="Tổng kg mục tiêu"
+      />
+      <button onclick="generate()">Ngẫu nhiên</button>
+    </div>
+
+    <div class="controls">
+      <input type="date" id="dateInput" onchange="onDateChange()" opti />
+      <button onclick="saveDay()">Lưu ngày</button>
+      <select id="savedDays" onchange="loadDay(this.value)">
+        <option value="">-- Xem ngày đã lưu --</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="table">
+        <thead>
+          <tr id="priceRow"></tr>
+        </thead>
+        <tbody id="orderRows"></tbody>
+        <tfoot>
+          <tr id="totalRow"></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="summary">
+      <div>Tổng ký: <span id="totalKg">0</span> kg</div>
+      <div>Tổng tiền: <span id="totalMoney">0</span> đ</div>
+    </div>
+    <div class="export-actions">
+      <button onclick="exportImage()">Xuất hình ảnh</button>
+      <button onclick="exportCSV()">Xuất file CSV</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  </body>
+</html>
